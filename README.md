@@ -1,4 +1,4 @@
-# AWS EC2 instance autodiscovery for Prometheus metrics
+# AWS EC2 Instance Autodiscovery for Prometheus metrics
 
 The normal Prometheus ec2_sd_configs object is very limited and doesn't support extended discovery. This limits it for example to the specified list of ports inside the prometheus configuration file.
 
