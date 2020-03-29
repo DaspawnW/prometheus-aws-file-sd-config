@@ -4,16 +4,21 @@ The normal Prometheus ec2_sd_configs object is very limited and doesn't support 
 
 To overcome this issue the following discovery.sh script simply searches for ec2 instances tagged with the following Tag-Pattern:
 
+```
 Key: prom/scrape:<port>/<path>
 Value: <name>
+```
 
 An example could be the node exporter:
 
+```
 Key: prom/scrape:9100/metrics
 Value: node_exporter
+```
 
 This will produce the following file_sd_config:
 
+```
 [
  { 
    "targets": ["<private-ip-address>:<port>"], 
@@ -26,6 +31,7 @@ This will produce the following file_sd_config:
    }
  }
 ]
+```
 
 This implementation is directly compatible with the Helm chart stable/prometheus as it also automatically updates the configmap with the file_sd_config output. The jimmidyson/configmap-reload docker image detects the change at the configmap and reloads prometheus.
 
