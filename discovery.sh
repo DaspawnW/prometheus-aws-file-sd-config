@@ -13,7 +13,7 @@
 #### Currently it takes only privateIpAddress, this can be changed to a non privateIpAddress
 
 #### [ {"PrivateIpAddress": "", "Tags": [{"Key": "", "Value": ""}] } ]
-instances=$(aws ec2 describe-instances --filters 'Name=tag-key,Values=prom/scrape*' --query "Reservations[*].Instances[*].{PrivateIpAddress:PrivateIpAddress,Tags:Tags}" --output json | jq '.[0] // []')
+instances=$(aws ec2 describe-instances --filters 'Name=tag-key,Values=prom/scrape*' --query "Reservations[*].Instances[*].{PrivateIpAddress:PrivateIpAddress,Tags:Tags}" --output json | jq 'flatten // []')
 
 fileSdConfig="[]"
 
